@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d626b5a20fef4bd49a4c52935351e4a9, type: 3}
+  m_Name: ShootGun2
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 5bae7906fb825924e8c85191f6a5d2aa, type: 3}
+  volume:
+    MinValue: 0.5082108
+    MaxValue: 0.62821096
+  pitch:
+    MinValue: 0.19908535
+    MaxValue: 0.31908524
