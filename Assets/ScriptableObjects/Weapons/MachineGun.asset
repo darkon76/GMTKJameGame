@@ -23,14 +23,7 @@ MonoBehaviour:
     - 0
     ShootForce: 10
     Audio: {fileID: 11400000, guid: 95a049a65d6b70242872a3d48c840297, type: 2}
-  - percentage: 0.25
-    Angles:
-    - -30
-    - 0
-    - 30
-    ShootForce: 30
-    Audio: {fileID: 11400000, guid: 39d2909b10522f14a9e75b2fc5b8bbf3, type: 2}
-  - percentage: 1
+  - percentage: 0.75
     Angles:
     - -45
     - -30

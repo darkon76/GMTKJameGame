@@ -5,16 +5,21 @@ using System.Diagnostics;
 
 public class WeaponHolder : MonoBehaviour {
     [SerializeField] WeaponSO _weapon;
+
+    [SerializeField]
+    private GameObject _weaponModel;
+
     private Rigidbody _rigidbody;
-    bool _canShoot = false;
-    private AudioSource _audioSource;
+    private AudioSource[] _audioSources;
     private WeaponNozzle[] Nozzles;
 
     private CharacterStats _stats;
     private int count = 0;
     private Stopwatch _watch = new Stopwatch();
 
-    private float ChargePercentage;
+    public float ChargePercentage;
+
+    private ChargeDisplayer _displayer;
 
 
     public bool TryShoot()
@@ -60,9 +65,9 @@ public class WeaponHolder : MonoBehaviour {
                 UnityEngine.Debug.Log( "bulleterror" );
         }
 
-        if( _audioSource && shootCharge.Audio )
+        if(shootCharge.Audio )
         {
-            shootCharge.Audio.Play( _audioSource );
+            shootCharge.Audio.Play( _audioSources[charge] );
         }
 
         count++;
@@ -74,12 +79,21 @@ public class WeaponHolder : MonoBehaviour {
     public void Awake()
     {
         _rigidbody = GetComponentInParent<Rigidbody>( );
-        _audioSource = GetComponent<AudioSource>( );
-        var model = Instantiate( _weapon.Model, transform, false );
-        Nozzles = model.GetComponentsInChildren<WeaponNozzle>( );
+        _audioSources = GetComponents<AudioSource>( );
+        if(_weaponModel == null)
+            _weaponModel = Instantiate( _weapon.Model, transform, false );
+        Nozzles = _weaponModel.GetComponentsInChildren<WeaponNozzle>( );
 
         _watch.Start( );
-        _stats = model.GetComponentInParent<CharacterStats>( );
+        _stats = GetComponentInParent<CharacterStats>( );
+        _displayer = GetComponentInChildren<ChargeDisplayer>( );
+    }
+
+    void Update()
+    {
+        float elapsed = _watch.ElapsedMilliseconds /1000f;
+        ChargePercentage = Mathf.Min( elapsed, _weapon.MaxChargeTime ) / _weapon.MaxChargeTime;
+        _displayer.SetCharge( ChargePercentage );
     }
 
 

@@ -6,23 +6,6 @@ public class CorridorGenerator : MonoBehaviour {
 
 
     [SerializeField] GameObject Destroyer;
-    [SerializeField] int tileWidht = 6;
-    [SerializeField] int tileLenght = 18;
-    
-
-
-    [SerializeField] List<TilePiece> TileList = new List<TilePiece>();
-    [SerializeField] List<TilePiece> WallList = new List<TilePiece>();
-
-
-    [SerializeField] Queue<GameObject> UpperWall = new Queue<GameObject>();
-
-
-    [SerializeField]
-    float wallStart = -10;
-
-    [SerializeField]
-    float wallDistance = 10;
 
 
     CharacterStats _character;

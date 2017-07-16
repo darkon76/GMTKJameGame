@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
+        Time.timeScale = 1;
         _offset = transform.position - Target.position;
         var mainCharacter = FindObjectOfType<MainCharacterController>( );
         Target = mainCharacter.transform;
@@ -21,9 +21,14 @@ public class CameraFollow : MonoBehaviour {
         var targetPosition = Target.position;
         targetPosition.y = 0;
         transform.position = Vector3.Lerp(transform.position, targetPosition + _offset,Time.deltaTime);
-	}
+#if UNITY_EDITOR
+        if( Input.GetKeyDown( KeyCode.Space ) )
+            Time.timeScale = Mathf.Abs( Time.timeScale - 1 );
+#endif
+    }
     void OnPlayerDead()
     {
+        Time.timeScale = 0;
         Destroy( this );
     }
 }

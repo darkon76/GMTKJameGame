@@ -14,7 +14,7 @@ public class PoolObjectDictionary : SoftSingleton<PoolObjectDictionary>
         {
             pool = gameObject.AddComponent<PoolObjectContainer>( );
             var parent = _parent;
-            if(parent = null)
+            if(parent == null)
                 parent = transform;
             pool.Init( template, parent, 1 );
             _poolDictionary.Add( template, pool );
