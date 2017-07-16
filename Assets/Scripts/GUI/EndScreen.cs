@@ -14,9 +14,11 @@ public class EndScreen : MonoBehaviour {
         var Player = FindObjectOfType<MainCharacterController>();
         Player.OnPlayerDead += OnPlayerDead;
 
-        var btn = GetComponentInChildren<Button>();
-        btn.onClick.AddListener( RestartScene );
-	}
+        var btns = GetComponentsInChildren<Button>();
+        btns[0].onClick.AddListener( RestartScene );
+        btns[1].onClick.AddListener( () => PlayerPrefs.DeleteKey( "TutorialPassed" ) );
+        btns[1].onClick.AddListener( RestartScene );
+    }
 
     void OnPlayerDead()
     {

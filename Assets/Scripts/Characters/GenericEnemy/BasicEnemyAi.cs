@@ -53,6 +53,13 @@ public class BasicEnemyAi : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.CompareTag("Respawn"))
+        {
+            if( _horde )
+                _horde.Recycle( gameObject );
+        }
+
+
         var bullet = collision.gameObject.GetComponent<BasicBullet>();
         if(bullet)
         {
@@ -67,7 +74,10 @@ public class BasicEnemyAi : MonoBehaviour {
                 var particles = PoolObjectDictionary.Instance.Get(_deadParticles);
                 particles.transform.position = transform.position;
                 particles.SetActive( true );
-                _horde.Recycle( gameObject );
+                if( _horde )
+                    _horde.Recycle( gameObject );
+                else
+                    Destroy( gameObject );
                 _health = _maxHealth;
 
                 _scoreManager.OnScoreUp( 10 );

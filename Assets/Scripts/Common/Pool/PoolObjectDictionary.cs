@@ -21,4 +21,10 @@ public class PoolObjectDictionary : SoftSingleton<PoolObjectDictionary>
         }
         return pool.Get(); 
     }
+
+    public T Get<T>(T template) where T:Component
+    {
+        var obj = Get(template.gameObject);
+        return obj.GetComponent<T>( );
+    }
 }

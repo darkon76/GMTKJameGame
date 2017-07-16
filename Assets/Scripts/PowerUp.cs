@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour {
 
-    [SerializeField] WeaponSO _weapon;
     [SerializeField] GameObject _particles;
     private void Awake()
     {

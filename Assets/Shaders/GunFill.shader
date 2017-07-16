@@ -60,12 +60,12 @@
 
 				// sample the texture
 				float2 displace;
-				displace.x = sin(_Time.g);
-				displace.y = sin(_Time.g);
-				fixed4 col = _ChargeColor;
-				fixed4 FirstText = tex2D(_MainTex, i.uv + displace);
 				displace.x = _Time.g;
 				displace.y = _Time.g;
+				fixed4 col = _ChargeColor;
+				fixed4 FirstText = tex2D(_MainTex, i.uv + displace);
+				displace.x = _Time.x;
+				displace.y = _Time.x;
 				fixed4  SecondText = tex2D(_SecodaryTex, i.uv + displace);
 
 				col += (FirstText * SecondText);

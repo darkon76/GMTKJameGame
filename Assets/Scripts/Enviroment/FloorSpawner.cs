@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class FloorSpawner : SpawnTile
 {
-    [Range(0,1)]
-    public float GapProbability = .25f;
+
+    [Range(0,100)]
+    public float GapProbability = 25f;
 
 
     protected override void Spawn()
     {
 
-        var spawnGap = !lastWasGap &  UnityEngine.Random.value < GapProbability;
+        var spawnGap = !lastWasGap &  (UnityEngine.Random.value * 100) < GapProbability;
 
         lastWasGap = spawnGap;
         var tileNum = spawnGap? 1:0;

@@ -20,4 +20,8 @@ public struct RangedFloat
     {
         get { return MaxValue - MinValue; }
     }
+    public bool Contains(float value)
+    {
+        return (value >= MinValue) && (value <= MaxValue);
+    }
 }
